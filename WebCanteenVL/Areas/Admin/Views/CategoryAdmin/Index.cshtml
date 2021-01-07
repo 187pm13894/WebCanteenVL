@@ -1,15 +1,16 @@
-﻿@model IEnumerable<WebCanteenVL.Models.FOOD>
+﻿@model IEnumerable<WebCanteenVL.Models.CATEGORY>
 
 @{
-    ViewBag.Title = "Món ăn";
+    ViewBag.Title = "Thể loại món ăn";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Danh sách món ăn</h2>
+<h2>Danh sách Loại món ăn</h2>
 
 <p>
-    @Html.ActionLink("Thêm món ăn", "Create")
+    @Html.ActionLink("Thêm loại món ăn", "Create")
 </p>
+
 <div class="card mb-3">
     <div class="card-header">
         <i class="fa fa-table"></i>Data Table Example
@@ -19,25 +20,19 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellpadding="0">
                 <thead>
                     <tr>
-                        <th>Mã món ăn</th>
-                        <th>Tên món ăn</th>
-                        <th>Mô tả</th>
-                        <th>Giá tiền</th>
+                        <th>Mã Loại món ăn</th>
+                        <th>Tên loại món ăn</th>                       
                         <th>Hình ảnh</th>
                         <th>Trạng thái</th>
-                        <th>Mã loại món ăn</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Mã món ăn</th>
-                        <th>Tên món ăn</th>
-                        <th>Mô tả</th>
-                        <th>Giá tiền</th>
+                        <th>Mã Loại món ăn</th>
+                        <th>Tên loại món ăn</th>
                         <th>Hình ảnh</th>
                         <th>Trạng thái</th>
-                        <th>Mã loại món ăn</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -46,29 +41,19 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FOOD_CODE)
+                                @Html.DisplayFor(modelItem => item.CATEGORY_CODE)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FOOD_NAME)
+                                @Html.DisplayFor(modelItem => item.CATEGORY_NAME)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DESCRIPTION)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PRICE)
-                            </td>
-                            <td>
-                                <img src="@item.IMAGE_URL" width="100"  />  
+                                <img src="@item.IMAGE_URL" width="100px" />
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.STATUS)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CATEGORY.CATEGORY_CODE)
-                            </td>
-                            <td>
                                 @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
-                                @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }) |
                                 @Html.ActionLink("Xoá", "Delete", new { id = item.ID })
                             </td>
                         </tr>

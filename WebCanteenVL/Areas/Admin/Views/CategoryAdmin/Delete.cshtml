@@ -1,39 +1,39 @@
-﻿@model WebCanteenVL.Models.ACCOUNT
+﻿@model WebCanteenVL.Models.CATEGORY
 
 @{
-    ViewBag.Title = "Xoá";
+    ViewBag.Title = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Xoá</h2>
 
-<h3>Bạn có chắc muốn xoá tài khoản này?</h3>
+<h3>Bạn có chắc muốn xoá loại này?</h3>
 <div>
-    <h4>Tài Khoản</h4>
+    <h4>Thể loại món ăn</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Email
+            Mã loại món ăn
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EMAIL)
+            @Html.DisplayFor(model => model.CATEGORY_CODE)
         </dd>
 
         <dt>
-            Mặt khẩu
+            Tên loại món ăn
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PASSWORD)
+            @Html.DisplayFor(model => model.CATEGORY_NAME)
         </dd>
 
         <dt>
-            Họ và tên
+            Hình ảnh
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FULL_NAME)
+            <img src="@Html.DisplayFor(model => model.IMAGE_URL)" width="100px" />
         </dd>
 
         <dt>
@@ -42,14 +42,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.STATUS)
-        </dd>
-
-        <dt>
-            Vai trò
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ROLE)
         </dd>
 
     </dl>
