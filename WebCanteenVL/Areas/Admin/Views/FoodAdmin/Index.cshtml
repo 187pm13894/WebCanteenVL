@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebCanteenVL.Models.FOOD>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Danh sách món ăn</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i>Data Table Example
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Mã món ăn</th>
+                        <th>Tên</th>
+                        <th>Mô tả</th>
+                        <th>Giá</th>
+                        <th>Hình ảnh</th>
+                        <th>Trạng thái</th>
+                        <th>Mã loại món ăn</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã món ăn</th>
+                        <th>Tên</th>
+                        <th>Mô tả</th>
+                        <th>Giá</th>
+                        <th>Hình ảnh</th>
+                        <th>Trạng thái</th>
+                        <th>Mã loại món ăn</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FOOD_CODE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FOOD_NAME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PRICE)
+                            </td>
+                            <td>
+                                <img src="~/Images/Thuc an/@item.IMAGE_URL" width="100px"  />  
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.STATUS)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CATEGORY.CATEGORY_CODE)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Xoá", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Update yesterday at 11:59 PM</div>
+</div>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebCanteenVL.Models.ACCOUNT>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i>Data Table Example
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Mật khẩu</th>
+                        <th>Họ và Tên</th>
+                        <th>Trạng thái</th>
+                        <th>Vai trò</th>                    
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Email</th>
+                        <th>Mật khẩu</th>
+                        <th>Họ và Tên</th>
+                        <th>Trạng thái</th>
+                        <th>Vai trò</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EMAIL)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PASSWORD)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FULL_NAME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.STATUS)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ROLE)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Xoá", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Update yesterday at 11:59 PM</div>
+</div>
