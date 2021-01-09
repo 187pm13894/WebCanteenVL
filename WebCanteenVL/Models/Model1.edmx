@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QUANLYCANTEENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AD2Team1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ACCOUNT">
           <Key>
             <PropertyRef Name="ID" />
@@ -25,6 +25,10 @@
           <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="IMAGE_URL" Type="nvarchar(max)" />
           <Property Name="STATUS" Type="bit" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
+          <Property Name="AGE" Type="int" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="CONTACT">
           <Key>
@@ -131,6 +135,16 @@
           <Property Name="TEXT" Type="nvarchar" MaxLength="50" />
           <Property Name="ORDER" Type="int" />
           <Property Name="IS_VISIBLE" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK__CUSTOMERS__FACUL__0519C6AF">
           <End Role="FACULTY" Type="Self.FACULTY" Multiplicity="1" />
@@ -252,7 +266,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QUANLYCANTEENModelStoreContainer">
+        <EntityContainer Name="AD2Team1ModelStoreContainer">
           <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONTACT" EntityType="Self.CONTACT" Schema="dbo" store:Type="Tables" />
@@ -265,6 +279,7 @@
           <EntitySet Name="ORDER" EntityType="Self.ORDER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SLIDER" EntityType="Self.SLIDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__CUSTOMERS__FACUL__0519C6AF" Association="Self.FK__CUSTOMERS__FACUL__0519C6AF">
             <End Role="FACULTY" EntitySet="FACULTY" />
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
@@ -310,7 +325,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QUANLYCANTEENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="AD2Team1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ACCOUNT">
           <Key>
             <PropertyRef Name="ID" />
@@ -334,6 +349,10 @@
           <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IMAGE_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AGE" Type="Int32" />
+          <Property Name="PRICE" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="FOODs" Relationship="Self.FK__FOOD__MENU_ID__117F9D94" FromRole="CATEGORY" ToRole="FOOD" />
         </EntityType>
         <EntityType Name="CONTACT">
@@ -458,6 +477,16 @@
           <Property Name="ORDER" Type="Int32" />
           <Property Name="IS_VISIBLE" Type="Boolean" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <Association Name="FK__MENU__ACCOUNT_ID__173876EA">
           <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="1" />
           <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
@@ -578,7 +607,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QUANLYCANTEENEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AD2Team1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ACCOUNTs" EntityType="Self.ACCOUNT" />
           <EntitySet Name="CATEGORies" EntityType="Self.CATEGORY" />
           <EntitySet Name="CONTACTs" EntityType="Self.CONTACT" />
@@ -591,6 +620,7 @@
           <EntitySet Name="ORDERs" EntityType="Self.ORDER" />
           <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" />
           <EntitySet Name="SLIDERs" EntityType="Self.SLIDER" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK__MENU__ACCOUNT_ID__173876EA" Association="Self.FK__MENU__ACCOUNT_ID__173876EA">
             <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
             <End Role="MENU" EntitySet="MENUs" />
@@ -637,9 +667,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QUANLYCANTEENModelStoreContainer" CdmEntityContainer="QUANLYCANTEENEntities">
+        <EntityContainerMapping StorageEntityContainer="AD2Team1ModelStoreContainer" CdmEntityContainer="AD2Team1Entities">
           <EntitySetMapping Name="ACCOUNTs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.ACCOUNT">
+            <EntityTypeMapping TypeName="AD2Team1Model.ACCOUNT">
               <MappingFragment StoreEntitySet="ACCOUNT">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
@@ -651,18 +681,22 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CATEGORies">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.CATEGORY">
+            <EntityTypeMapping TypeName="AD2Team1Model.CATEGORY">
               <MappingFragment StoreEntitySet="CATEGORY">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CATEGORY_CODE" ColumnName="CATEGORY_CODE" />
                 <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
                 <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CONTACTs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.CONTACT">
+            <EntityTypeMapping TypeName="AD2Team1Model.CONTACT">
               <MappingFragment StoreEntitySet="CONTACT">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
@@ -673,7 +707,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CUSTOMERs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.CUSTOMER">
+            <EntityTypeMapping TypeName="AD2Team1Model.CUSTOMER">
               <MappingFragment StoreEntitySet="CUSTOMER">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
@@ -687,7 +721,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FACULTies">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.FACULTY">
+            <EntityTypeMapping TypeName="AD2Team1Model.FACULTY">
               <MappingFragment StoreEntitySet="FACULTY">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FACULTY_CODE" ColumnName="FACULTY_CODE" />
@@ -697,7 +731,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FOODs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.FOOD">
+            <EntityTypeMapping TypeName="AD2Team1Model.FOOD">
               <MappingFragment StoreEntitySet="FOOD">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FOOD_CODE" ColumnName="FOOD_CODE" />
@@ -711,7 +745,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="INTRODUCTIONs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.INTRODUCTION">
+            <EntityTypeMapping TypeName="AD2Team1Model.INTRODUCTION">
               <MappingFragment StoreEntitySet="INTRODUCTION">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
@@ -719,7 +753,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MENUs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.MENU">
+            <EntityTypeMapping TypeName="AD2Team1Model.MENU">
               <MappingFragment StoreEntitySet="MENU">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FOOD_ID" ColumnName="FOOD_ID" />
@@ -732,7 +766,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NOTIFICATIONs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.NOTIFICATION">
+            <EntityTypeMapping TypeName="AD2Team1Model.NOTIFICATION">
               <MappingFragment StoreEntitySet="NOTIFICATION">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
@@ -743,7 +777,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ORDERs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.ORDER">
+            <EntityTypeMapping TypeName="AD2Team1Model.ORDER">
               <MappingFragment StoreEntitySet="ORDER">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ORDER_CODE" ColumnName="ORDER_CODE" />
@@ -756,7 +790,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ORDER_DETAIL">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.ORDER_DETAIL">
+            <EntityTypeMapping TypeName="AD2Team1Model.ORDER_DETAIL">
               <MappingFragment StoreEntitySet="ORDER_DETAIL">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
@@ -767,13 +801,24 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SLIDERs">
-            <EntityTypeMapping TypeName="QUANLYCANTEENModel.SLIDER">
+            <EntityTypeMapping TypeName="AD2Team1Model.SLIDER">
               <MappingFragment StoreEntitySet="SLIDER">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
                 <ScalarProperty Name="TEXT" ColumnName="TEXT" />
                 <ScalarProperty Name="ORDER" ColumnName="ORDER" />
                 <ScalarProperty Name="IS_VISIBLE" ColumnName="IS_VISIBLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AD2Team1Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -793,7 +838,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

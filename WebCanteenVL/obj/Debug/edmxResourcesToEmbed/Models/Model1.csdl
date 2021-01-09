@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="QUANLYCANTEENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="AD2Team1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="ACCOUNT">
     <Key>
       <PropertyRef Name="ID" />
@@ -23,6 +23,10 @@
     <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="IMAGE_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="STATUS" Type="Boolean" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AGE" Type="Int32" />
+    <Property Name="PRICE" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="FOODs" Relationship="Self.FK__FOOD__MENU_ID__117F9D94" FromRole="CATEGORY" ToRole="FOOD" />
   </EntityType>
   <EntityType Name="CONTACT">
@@ -147,6 +151,16 @@
     <Property Name="ORDER" Type="Int32" />
     <Property Name="IS_VISIBLE" Type="Boolean" />
   </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <Association Name="FK__MENU__ACCOUNT_ID__173876EA">
     <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="1" />
     <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
@@ -267,7 +281,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QUANLYCANTEENEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="AD2Team1Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ACCOUNTs" EntityType="Self.ACCOUNT" />
     <EntitySet Name="CATEGORies" EntityType="Self.CATEGORY" />
     <EntitySet Name="CONTACTs" EntityType="Self.CONTACT" />
@@ -280,6 +294,7 @@
     <EntitySet Name="ORDERs" EntityType="Self.ORDER" />
     <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" />
     <EntitySet Name="SLIDERs" EntityType="Self.SLIDER" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <AssociationSet Name="FK__MENU__ACCOUNT_ID__173876EA" Association="Self.FK__MENU__ACCOUNT_ID__173876EA">
       <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
       <End Role="MENU" EntitySet="MENUs" />

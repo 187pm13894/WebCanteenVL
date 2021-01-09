@@ -4,12 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebCanteenVL.Models;
+using System.IO;
+using WebCanteenVL.Areas.Admin.Middleware;
 
 namespace WebCanteenVL.Areas.Admin.Controllers
 {
+    [LoginVerification]
     public class CategoryAdminController : Controller
     {
-        QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
+        AD2Team1Entities model = new AD2Team1Entities();
         // GET: Admin/CategoryAdmin
         public ActionResult Index()
         {

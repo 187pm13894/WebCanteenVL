@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="QUANLYCANTEENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="AD2Team1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="ACCOUNT">
     <Key>
       <PropertyRef Name="ID" />
@@ -20,6 +20,10 @@
     <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="IMAGE_URL" Type="nvarchar(max)" />
     <Property Name="STATUS" Type="bit" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
+    <Property Name="AGE" Type="int" />
+    <Property Name="PRICE" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="CONTACT">
     <Key>
@@ -126,6 +130,16 @@
     <Property Name="TEXT" Type="nvarchar" MaxLength="50" />
     <Property Name="ORDER" Type="int" />
     <Property Name="IS_VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK__CUSTOMERS__FACUL__0519C6AF">
     <End Role="FACULTY" Type="Self.FACULTY" Multiplicity="1" />
@@ -247,7 +261,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QUANLYCANTEENModelStoreContainer">
+  <EntityContainer Name="AD2Team1ModelStoreContainer">
     <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CONTACT" EntityType="Self.CONTACT" Schema="dbo" store:Type="Tables" />
@@ -260,6 +274,7 @@
     <EntitySet Name="ORDER" EntityType="Self.ORDER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLIDER" EntityType="Self.SLIDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__CUSTOMERS__FACUL__0519C6AF" Association="Self.FK__CUSTOMERS__FACUL__0519C6AF">
       <End Role="FACULTY" EntitySet="FACULTY" />
       <End Role="CUSTOMER" EntitySet="CUSTOMER" />

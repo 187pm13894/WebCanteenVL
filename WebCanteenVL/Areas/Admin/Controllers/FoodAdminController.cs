@@ -8,7 +8,7 @@ namespace WebCanteenVL.Areas.Admin.Controllers
 {
     public class FoodAdminController : Controller
     {
-        QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
+        AD2Team1Entities model = new AD2Team1Entities();
         // GET: Admin/FoodAdmin
         public ActionResult Index()
         {

@@ -9,7 +9,7 @@ namespace WebCanteenVL.Areas.Admin.Controllers
 {
     public class AccountAdminController : Controller
     {
-        QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
+        AD2Team1Entities model = new AD2Team1Entities();
         // GET: Admin/AccountAdmin
         public ActionResult Index()
         {

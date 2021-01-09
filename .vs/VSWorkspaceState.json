@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\WebCanteenVL",
+    "\\WebCanteenVL\\Areas",
+    "\\WebCanteenVL\\Areas\\Admin",
+    "\\WebCanteenVL\\Areas\\Admin\\Controllers",
+    "\\WebCanteenVL\\Areas\\Admin\\Views",
+    "\\WebCanteenVL\\Areas\\Admin\\Views\\Auth",
+    "\\WebCanteenVL\\Areas\\Admin\\Views\\Shared"
+  ],
+  "SelectedNode": "\\WebCanteenVL\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+  "PreviewInSolutionExplorer": false
+}
